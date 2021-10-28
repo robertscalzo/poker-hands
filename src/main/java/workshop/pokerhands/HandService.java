@@ -5,8 +5,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class HandService {
 
-    public static String checkWinner(Hand[] hands) {
-        System.out.println(hands[0].bestHand().getValue() + " " +hands[1].bestHand().getValue());
+    public String checkWinner(Hand[] hands) {
         if (hands[0].bestHand().getValue() > hands[1].bestHand().getValue()) {
             return hands[0].getName();
         } else if (hands[0].bestHand().getValue() < hands[1].bestHand().getValue()) {
@@ -15,7 +14,7 @@ public class HandService {
         return getHighCard(hands);
     }
 
-    private static String compareHandsOfSameRankAndBreakTie(Hand[] hands) {
+    private String compareHandsOfSameRankAndBreakTie(Hand[] hands) {
         switch (hands[0].bestHand()) {
             case FOAK:
                 return getHighestFOAK(hands);
@@ -33,7 +32,7 @@ public class HandService {
         }
     }
 
-    private static String getHighestFOAK(Hand[] hands) {
+    private String getHighestFOAK(Hand[] hands) {
         if (hands[0].getFOAK() > hands[1].getFOAK()) {
             return hands[0].getName();
         } else {
@@ -41,7 +40,7 @@ public class HandService {
         }
     }
 
-    private static String getHighestFullHouse(Hand[] hands) {
+    private String getHighestFullHouse(Hand[] hands) {
         if (hands[0].getFullHouse() > hands[1].getFullHouse()) {
             return hands[0].getName();
         } else if (hands[0].getFullHouse() < hands[1].getFullHouse()) {
@@ -56,7 +55,7 @@ public class HandService {
         }
     }
 
-    private static String getHighestTOAK(Hand[] hands) {
+    private String getHighestTOAK(Hand[] hands) {
         if (hands[0].getTOAK() > hands[1].getTOAK()) {
             return hands[0].getName();
         } else if(hands[0].getTOAK() < hands[1].getTOAK())
@@ -66,11 +65,11 @@ public class HandService {
         return "DRAW";
     }
 
-    private static String getHighestTwoPair(Hand[] hands) {
+    private String getHighestTwoPair(Hand[] hands) {
         return "Draw";
     }
 
-    private static String getHighestPair(Hand[] hands) {
+    private String getHighestPair(Hand[] hands) {
         if (hands[0].getPair() > hands[1].getPair()) {
             return hands[0].getName();
         } else if (hands[0].getPair() < hands[1].getPair()) {
@@ -88,7 +87,7 @@ public class HandService {
     }
 
 
-    private static String getHighCard(Hand[] hands) {
+    private String getHighCard(Hand[] hands) {
         if (hands[0].getHighestCard() > hands[1].getHighestCard()) {
             return hands[0].getName();
         } else if (hands[0].getHighestCard() < hands[1].getHighestCard()) {
@@ -98,7 +97,7 @@ public class HandService {
     }
 
 /*
-    private static String checkTOAKBeatsTwoPair(Hand[] hands) {
+    private String checkTOAKBeatsTwoPair(Hand[] hands) {
         for (int i = 0; i < hands.length; i++) {
             if (hands[i].getTOAK() != -1) {
                 return hands[i].getName();
@@ -106,7 +105,7 @@ public class HandService {
         }
         return "Draw";
     }
-    private static String checkTwoPairBeatsPair(Hand[] hands) {
+    private String checkTwoPairBeatsPair(Hand[] hands) {
         for (int i = 0; i < hands.length; i++) {
             if (hands[i].getTwoPair() != -1) {
                 return hands[i].getName();
@@ -115,7 +114,7 @@ public class HandService {
         return "Draw";
     }
 
-    private static String checkPairBeatsHighCard(Hand[] hands) {
+    private String checkPairBeatsHighCard(Hand[] hands) {
         for (int i = 0; i < hands.length; i++) {
             if (hands[i].getPair() != -1) {
                 return hands[i].getName();

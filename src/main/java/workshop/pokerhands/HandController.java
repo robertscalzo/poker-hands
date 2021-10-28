@@ -8,9 +8,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class HandController {
-
+    public HandService handService;
+    public HandController(HandService handService){this.handService=handService;}
     @PostMapping("/hands")
     public String postHands(@RequestBody Hand[] hands) {
-        return HandService.checkWinner(hands);
+        return handService.checkWinner(hands);
     }
 }

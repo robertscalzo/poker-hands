@@ -1,13 +1,20 @@
 package workshop.pokerhands;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 class HandServiceTest {
     @Autowired
-    HandService handService;
+    public HandService handService;
+
+    @BeforeEach
+    void setup(){
+        handService=new HandService();
+    }
 
     @Test
     public void checkWinnerTestHighCard() {
